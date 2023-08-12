@@ -1,11 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Events index{% endblock %}
+{% block title %}Upcoming Events{% endblock %}
 
 {% block body %}
-    <h1>Events index</h1>
+    <h1>Upcoming Events</h1>
+    {% for event in events %}
+    <div class="card gap-3 mt-5 mb-5" style="width: 18rem;">
+        <img src="{{ event.image }}" class="card-img-top" alt="...">
+         <div class="card-body">
+            <h5 class="card-title">{{ event.name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ event.dateNTime ? event.dateNTime|date('Y-m-d H:i:s') : '' }}</li>
+            <li class="list-group-item">{{ event.address }}</li>
+            <li class="list-group-item">{{ event.type }}</li>
+            <li class="list-group-item">{{ event.url }}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{{ path('app_events_show', {'id': event.id}) }}" class="card-link">Details</a>
+            <a <a href="{{ path('app_events_edit', {'id': event.id}) }}" class="card-link">Edit</a>
+        </div>
+    </div>
+    {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+    {% endfor %}
 
-    <table class="table">
+    {# <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -49,5 +71,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_events_new') }}">Create new</a>
+    <a href="{{ path('app_events_new') }}">Create new</a> #}
 {% endblock %}
