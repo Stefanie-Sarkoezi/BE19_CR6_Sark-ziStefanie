@@ -78,4 +78,19 @@ class EventsController extends AbstractController
 
         return $this->redirectToRoute('app_events_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/filter', name: 'app_events_filterIndex', methods: ['GET'])]
+    public function filterIndex(Request $request, EventsRepository $eventRepository): Response
+    {
+        $eventTypeFilter = $request->query->get('type');
+
+        if ($eventTypeFilter) {
+            $filteredEvents = $eventRepository->findBy(['type' => $eventTypeFilter]);
+        } else {
+            $filteredEvents = $eventRepository->findAll();
+        }
+
+        return $this->render('events/index.html.twig', [
+            'events' => $filteredEvents,
+        ]);
+    }
 }

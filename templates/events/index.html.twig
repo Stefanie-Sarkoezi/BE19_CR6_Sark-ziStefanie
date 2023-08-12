@@ -6,22 +6,17 @@
      <h1 class="text-center my-5 text-white fs-1">Upcoming Events</h1>     
 {% endblock %}
 {% block body %}
-    <div class="text-center text-white">
-        <span> Search by Category: </span> 
-        <span class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Categories
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Music</a></li>
-                <li><a class="dropdown-item" href="#">Sport</a></li>
-                <li><a class="dropdown-item" href="#">Movie</a></li>
-                <li><a class="dropdown-item" href="#">Theater</a></li>
-            </ul>
-        </span>
-        <span class="btn btn-light">Search</span>
-    </div>
-
+    <form method="get" action="{{ path('app_events_filterIndex') }}" class="text-center text-white">
+        <label for="eventType" >Filter by Event Type:</label>
+        <select id="eventType" name="eventType" class="btn btn-light">
+            <option value="">All</option>
+            <option value="Music">Music</option>
+            <option value="Sport">Sport</option>
+            <option value="Movie">Movie</option>
+            <option value="Theater">Theater</option>
+        </select>
+        <button type="submit" class="btn btn-light">Apply Filter</button>
+    </form>
     <div class="container">
         <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 gap-4">
         {% for event in events %}
