@@ -16,11 +16,11 @@
         {% block navbar %}
             <nav class="navbar navbar-expand-lg bg-black">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ path('app_events_index') }}"><img src="{{asset("images/logo.png") }}"></a>
+                    <a class="navbar-brand ms-3" href="{{ path('app_events_index') }}"><img src="{{asset("images/logo.png") }}"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse offcanvas offcanvas-end ms-5" id="navbarNav">
+                    <div class="collapse navbar-collapse ms-3 fs-4" id="navbarNav">
                         <ul class="navbar-nav ms-5">
                             <li class="nav-item">
                                 <a class="nav-link active text-white ms-5" aria-current="page" href="{{ path('app_events_index') }}">Home</a>
@@ -37,19 +37,19 @@
         {% endblock %} 
         {% block footer %}
             <footer class="mt-5 ">
-                <div class="card text-center bg-black" id="foBg">
+                <div class="card text-center bg-dark" id="foBg">
                     <div class="card-header p-3">
-                        <a class="btn btn-dark p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/Facebook.png") }}" width="40%" class="m-1"><a>
-                        <a class="btn btn-dark p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/twitter.png") }}" width="90%" class="m-1"></a>
-                        <a class="btn btn-dark p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/instagram.png") }}" width="75%"  class="m-1"></a>
-                        <a class="btn btn-dark p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/google.png") }}" width="75%"  class="m-1"></a>
+                        <a class="btn btn-secondary p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/Facebook.png") }}" width="40%" class="m-1"><a>
+                        <a class="btn btn-secondary p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/twitter.png") }}" width="90%" class="m-1"></a>
+                        <a class="btn btn-secondary p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/instagram.png") }}" width="75%"  class="m-1"></a>
+                        <a class="btn btn-secondary p-1 m-1" style="width: 3%;" href="#" role="button"><img src="{{asset("images/google.png") }}" width="75%"  class="m-1"></a>
                     </div>
-                    <span class="card-body input-group input-group-sm  mx-auto p-3" style="width: 40%;" >
-                    <span class="input-group-text bg-dark border-dark text-white rounded-start">Sign up for our newsletter</span>
-                        <input type="text" name="email" autocomplete="email" class="form-control bg-black border-dark" placeholder="example@gmail.com">
-                        <button class=" btn rounded-end bg-dark text-white" type="button" id="button-addon1"> Subscripe</button>
+                    <span class="card-body input-group input-group-sm  mx-auto p-3 w-auto" style="width: 40%;" >
+                    <span class="input-group-text bg-light border-light text-black rounded-start d-flex">Sign up for our newsletter</span>
+                        <input type="text" name="email" autocomplete="email" class="form-control bg-light border-light" placeholder="example@gmail.com">
+                        <button class=" btn rounded-end bg-light text-black" type="button" id="button-addon1"> Subscripe</button>
                     </span>
-                    <div class="card-footer text-body-subtle p-1">
+                    <div class="card-footer text-light text-body-subtle p-1">
                     &copy; Stefanie Sarközi
                     </div>
                 </div>

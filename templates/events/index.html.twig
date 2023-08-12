@@ -3,22 +3,22 @@
 {% block title %}Upcoming Events{% endblock %}
 
 {% block body %}
-    <h1>Upcoming Events</h1>
+    <h1 class="text-center my-5 text-white fs-1">Upcoming Events</h1>
     {% for event in events %}
-    <div class="card gap-3 mt-5 mb-5" style="width: 18rem;">
-        <img src="{{ event.image }}" class="card-img-top" alt="...">
-         <div class="card-body">
-            <h5 class="card-title">{{ event.name }}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ event.dateNTime ? event.dateNTime|date('Y-m-d H:i:s') : '' }}</li>
-            <li class="list-group-item">{{ event.address }}</li>
-            <li class="list-group-item">{{ event.type }}</li>
-            <li class="list-group-item">{{ event.url }}</li>
-        </ul>
+    <div class="card gap-3 mt-5 mb-5 ms-5 me-5 bg-dark text-white" style="width: 18rem;">
+        <img src="{{ event.image }}" class="card-img-top" alt="Event Image" style="height: 20vh"; >
         <div class="card-body">
-            <a href="{{ path('app_events_show', {'id': event.id}) }}" class="card-link">Details</a>
-            <a <a href="{{ path('app_events_edit', {'id': event.id}) }}" class="card-link">Edit</a>
+            <h5 class="card-title text-center">{{ event.name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush ">
+            <li class="list-group-item bg-dark text-white"><b>Date and Time:</b> <br>{{ event.dateNTime ? event.dateNTime|date('D, d/m/Y @ H:i A') : '' }}</li>
+            <li class="list-group-item bg-dark text-white" ><b>Address: </b><br>{{ event.address }}</li>
+            <li class="list-group-item bg-dark text-white"><b>Event Type: </b><br>{{ event.type }}</li>
+            <li class="list-group-item bg-dark text-white"><b>Event Url: </b><br>{{ event.url }}</li>
+        </ul>
+        <div class="card-body text-center">
+            <a href="{{ path('app_events_show', {'id': event.id}) }}" class="card-link  text-decoration-none btn btn-light text-black w-5 px-2">Details</a>
+            <a href="{{ path('app_events_edit', {'id': event.id}) }}" class="card-link  text-decoration-none btn btn-light text-black px-3">Edit</a>
         </div>
     </div>
     {% else %}
