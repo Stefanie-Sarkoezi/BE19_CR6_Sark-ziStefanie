@@ -3,9 +3,34 @@
 {% block title %}Events{% endblock %}
 
 {% block body %}
-    <h1>Events</h1>
+    <h1 <h1 class="text-center my-5 text-white fs-1">Events</h1>
 
-    <table class="table">
+    <div class="my-5 text-white d-flex gap-5 justify-content-center align-items-center">
+        <div>
+            <div ><img src="{{ event.image }}" class="detailsImage"></div>
+        </div>
+        <div>
+            <p> <b>Event Name:</b> <br>{{ event.name }}</p>
+            <p> <b>Date and Time:</b> <br>{{ event.dateNTime ? event.dateNTime|date('D, d/m/Y @ H:i A') : '' }}</p>
+            <p> <b>Address: </b><br>{{ event.address }}</p> 
+            <p> <b>Event Type: </b><br>{{ event.type }}</p>
+            <p> <b>Event Url: </b><br>{{ event.url }}</p>
+            <p> <b>Event Capacity: </b><br>{{ event.capacity }}</p>
+            <p> <b>Email: </b><br>{{ event.email }}</p>
+            <p> <b>Phone Number: </b><br>{{ event.phoneNumber }}</p>
+            <p> <b>Description: </b><br> {{ event.description }}</p>
+        </div>
+    </div>
+
+    <div class="text-center" > 
+        <a href="{{ path('app_events_edit', {'id': event.id}) }}" class="btn text-white btn-dark my-3">Edit</a>
+        {{ include('events/_delete_form.html.twig') }} 
+        <a href="{{ path('app_events_index') }}" class="btn text-white btn-dark my-3">Back to List</a>
+    </div>
+{% endblock %}
+
+
+    {# <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -59,4 +84,4 @@
     <a href="{{ path('app_events_edit', {'id': event.id}) }}">edit</a>
 
     {{ include('events/_delete_form.html.twig') }}
-{% endblock %}
+{% endblock %} #}

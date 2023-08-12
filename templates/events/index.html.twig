@@ -1,75 +1,54 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Upcoming Events{% endblock %}
-
+{% block hero %}
+     {{ parent() }}  
+     <h1 class="text-center my-5 text-white fs-1">Upcoming Events</h1>     
+{% endblock %}
 {% block body %}
-    <h1 class="text-center my-5 text-white fs-1">Upcoming Events</h1>
-    {% for event in events %}
-    <div class="card gap-3 mt-5 mb-5 ms-5 me-5 bg-dark text-white" style="width: 18rem;">
-        <img src="{{ event.image }}" class="card-img-top" alt="Event Image" style="height: 20vh"; >
-        <div class="card-body">
-            <h5 class="card-title text-center">{{ event.name }}</h5>
-        </div>
-        <ul class="list-group list-group-flush ">
-            <li class="list-group-item bg-dark text-white"><b>Date and Time:</b> <br>{{ event.dateNTime ? event.dateNTime|date('D, d/m/Y @ H:i A') : '' }}</li>
-            <li class="list-group-item bg-dark text-white" ><b>Address: </b><br>{{ event.address }}</li>
-            <li class="list-group-item bg-dark text-white"><b>Event Type: </b><br>{{ event.type }}</li>
-            <li class="list-group-item bg-dark text-white"><b>Event Url: </b><br>{{ event.url }}</li>
-        </ul>
-        <div class="card-body text-center">
-            <a href="{{ path('app_events_show', {'id': event.id}) }}" class="card-link  text-decoration-none btn btn-light text-black w-5 px-2">Details</a>
-            <a href="{{ path('app_events_edit', {'id': event.id}) }}" class="card-link  text-decoration-none btn btn-light text-black px-3">Edit</a>
-        </div>
+    <div class="text-center text-white">
+        <span> Search by Category: </span> 
+        <span class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Music</a></li>
+                <li><a class="dropdown-item" href="#">Sport</a></li>
+                <li><a class="dropdown-item" href="#">Movie</a></li>
+                <li><a class="dropdown-item" href="#">Theater</a></li>
+            </ul>
+        </span>
+        <span class="btn btn-light">Search</span>
     </div>
-    {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-    {% endfor %}
 
-    {# <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>DateNTime</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Capacity</th>
-                <th>Email</th>
-                <th>PhoneNumber</th>
-                <th>Address</th>
-                <th>Url</th>
-                <th>Type</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 gap-4">
         {% for event in events %}
-            <tr>
-                <td>{{ event.id }}</td>
-                <td>{{ event.name }}</td>
-                <td>{{ event.dateNTime ? event.dateNTime|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ event.description }}</td>
-                <td>{{ event.image }}</td>
-                <td>{{ event.capacity }}</td>
-                <td>{{ event.email }}</td>
-                <td>{{ event.phoneNumber }}</td>
-                <td>{{ event.address }}</td>
-                <td>{{ event.url }}</td>
-                <td>{{ event.type }}</td>
-                <td>
-                    <a href="{{ path('app_events_show', {'id': event.id}) }}">show</a>
-                    <a href="{{ path('app_events_edit', {'id': event.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
+            <div class="card bg-dark text-white  mt-5 mb-5 shadow align-items-center" style="width: 18rem;">
+                <img src="{{ event.image }}" class="card-img-top imageCard mt-3" alt="Event Image" >
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ event.name }}</h5>
+                </div>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item bg-dark text-white"><b>Date and Time:</b> <br>{{ event.dateNTime ? event.dateNTime|date('D, d/m/Y @ H:i A') : '' }}</li>
+                    <li class="list-group-item bg-dark text-white" ><b>Address: </b><br>{{ event.address }}</li>
+                    <li class="list-group-item bg-dark text-white"><b>Event Type: </b><br>{{ event.type }}</li>
+                    <li class="list-group-item bg-dark text-white"><b>Event Url: </b><br>{{ event.url }}</li>
+                </ul>
+                <div class="card-body text-center">
+                    <a href="{{ path('app_events_show', {'id': event.id}) }}" class="card-link  text-decoration-none btn btn-light text-black w-5 px-2">Details</a>
+                    <a href="{{ path('app_events_edit', {'id': event.id}) }}" class="card-link  text-decoration-none btn btn-light text-black px-3">Edit</a>
+                </div>
+            </div>
+       {% else %}
+                <tr>
+                    <td colspan="12">no records found</td>
+                </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_events_new') }}">Create new</a> #}
+        </div>
+    
+        
+    </div>
+    
 {% endblock %}

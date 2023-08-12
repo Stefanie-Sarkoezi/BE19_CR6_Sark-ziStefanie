@@ -5,17 +5,23 @@
 }
 
 body {
-    height: 100vh;
-    background-image: url(../images/bg.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background-color: rgb(24, 22, 24);
 }
 
-/* .heroImage {
-    height: 25vh;
+.heroImage {
+    height: 40vh;
     background-image: url(../images/bg.png);
     background-repeat: no-repeat;
     background-position: bottom;
     
-} */
+}
+
+.imageCard {
+    
+    height: 20vh;
+}
+
+.detailsImage{
+    
+width: 45vw;
+}
