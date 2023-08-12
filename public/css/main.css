@@ -15,7 +15,11 @@ body {
     background-position: bottom;
     
 }
-
+.testG{
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
 .imageCard {
     
     height: 20vh;

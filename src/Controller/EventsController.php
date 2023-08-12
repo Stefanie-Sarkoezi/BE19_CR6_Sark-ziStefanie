@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Events;
 use App\Form\EventsType;
 use App\Repository\EventsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Events;
 
 #[Route('/events')]
 class EventsController extends AbstractController
@@ -78,19 +78,21 @@ class EventsController extends AbstractController
 
         return $this->redirectToRoute('app_events_index', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('/filter', name: 'app_events_filterIndex', methods: ['GET'])]
-    public function filterIndex(Request $request, EventsRepository $eventRepository): Response
+
+    #[Route('/filter', name: 'app_events_filter', methods: ['GET'])]
+    public function filter(Request $request, EventsRepository $eventsRepository): Response
     {
         $eventTypeFilter = $request->query->get('type');
-
+        
+       
         if ($eventTypeFilter) {
-            $filteredEvents = $eventRepository->findBy(['type' => $eventTypeFilter]);
+            $filteredEvents = $eventsRepository->findBy(['type' => $eventTypeFilter]);
         } else {
-            $filteredEvents = $eventRepository->findAll();
+            $filteredEvents = $eventsRepository->findAll();
         }
 
         return $this->render('events/index.html.twig', [
-            'events' => $filteredEvents,
+            'events' => $filteredEvents
         ]);
     }
 }

@@ -6,7 +6,7 @@
      <h1 class="text-center my-5 text-white fs-1">Upcoming Events</h1>     
 {% endblock %}
 {% block body %}
-    <form method="get" action="{{ path('app_events_filterIndex') }}" class="text-center text-white">
+    <form method="get" action="{{ path('app_events_filter') }}" class="text-center text-white">
         <label for="eventType" >Filter by Event Type:</label>
         <select id="eventType" name="eventType" class="btn btn-light">
             <option value="">All</option>
@@ -25,8 +25,8 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">{{ event.name }}</h5>
                 </div>
-                <ul class="list-group list-group-flush ">
-                    <li class="list-group-item bg-dark text-white"><b>Date and Time:</b> <br>{{ event.dateNTime ? event.dateNTime|date('D, d/m/Y @ H:i A') : '' }}</li>
+                <ul class="list-group list-group-flush testG ">
+                    <li class="list-group-item bg-dark text-white myli"><b>Date and Time:</b> <br>{{ event.dateNTime ? event.dateNTime|date('D, d/m/Y @ H:i A') : '' }}</li>
                     <li class="list-group-item bg-dark text-white" ><b>Address: </b><br>{{ event.address }}</li>
                     <li class="list-group-item bg-dark text-white"><b>Event Type: </b><br>{{ event.type }}</li>
                     <li class="list-group-item bg-dark text-white"><b>Event Url: </b><br>{{ event.url }}</li>
