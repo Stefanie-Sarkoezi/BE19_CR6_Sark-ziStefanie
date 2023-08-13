@@ -24,15 +24,14 @@ class EventsRepository extends ServiceEntityRepository
 //    /**
 //     * @return Events[] Returns an array of Events objects
 //     */
-//    public function findByFilter($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByFilter($fieldName, $value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere("e.$fieldName = :val")
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    public function findOneBySomeField($value): ?Events
 //    {

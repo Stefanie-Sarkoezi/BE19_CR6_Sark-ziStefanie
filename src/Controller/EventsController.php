@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Events;
 use App\Form\EventsType;
 use App\Repository\EventsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Events;
+
 
 #[Route('/events')]
 class EventsController extends AbstractController
@@ -82,11 +83,14 @@ class EventsController extends AbstractController
     #[Route('/filter', name: 'app_events_filter', methods: ['GET'])]
     public function filter(Request $request, EventsRepository $eventsRepository): Response
     {
+        // die('Debugging here!');
+        // dump($request->query->all());
+
         $eventTypeFilter = $request->query->get('type');
         
        
         if ($eventTypeFilter) {
-            $filteredEvents = $eventsRepository->findBy(['type' => $eventTypeFilter]);
+            $filteredEvents = $eventsRepository->findByFilter('type', $eventTypeFilter);
         } else {
             $filteredEvents = $eventsRepository->findAll();
         }
