@@ -15,6 +15,30 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/events')]
 class EventsController extends AbstractController
 {
+    #[Route('/filter', name: 'app_events_filter', methods: ['GET'])]
+    public function filter(Request $request, EventsRepository $eventsRepository): Response
+    {
+        // die('Debugging here!');
+        // dump($request->query->all());
+        
+        
+        $eventTypeFilter = $request->query->get('eventType');
+
+        // var_dump($eventTypeFilter);
+       
+        if ($eventTypeFilter) {
+            $filteredEvents = $eventsRepository->findByFilter('type', $eventTypeFilter);
+        } else {
+            $filteredEvents = $eventsRepository->findAll();
+        }
+
+        // var_dump($filteredEvents);
+
+        return $this->render('events/index.html.twig', [
+            'events' => $filteredEvents
+        ]);
+    }
+
     #[Route('/', name: 'app_events_index', methods: ['GET'])]
     public function index(EventsRepository $eventsRepository): Response
     {
@@ -80,23 +104,5 @@ class EventsController extends AbstractController
         return $this->redirectToRoute('app_events_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/filter', name: 'app_events_filter', methods: ['GET'])]
-    public function filter(Request $request, EventsRepository $eventsRepository): Response
-    {
-        // die('Debugging here!');
-        // dump($request->query->all());
 
-        $eventTypeFilter = $request->query->get('type');
-        
-       
-        if ($eventTypeFilter) {
-            $filteredEvents = $eventsRepository->findByFilter('type', $eventTypeFilter);
-        } else {
-            $filteredEvents = $eventsRepository->findAll();
-        }
-
-        return $this->render('events/index.html.twig', [
-            'events' => $filteredEvents
-        ]);
-    }
 }
